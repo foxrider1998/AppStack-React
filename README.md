@@ -6,6 +6,8 @@
 
 Hello, hope you find this template useful. AppStack React has been crafted on top of Bootstrap 5 and React. It's documentation does not replace the official Bootstrap 5 documentation but rather supplements it by providing a comprehensive view of all extended styles and new components that this template provides on top of Bootstrap 5. It covers various aspects like incoming about the template organization, necessary changes in the source code, and how to compile and extend it the way you want.
 
+![Default Dashboard](https://github.com/flurryunicorn/AppStack-React/blob/main/javascript/src/assets/img/screenshots/dashboard-default.jpg)
+
 ## Table of Contents
 
 - Getting started
