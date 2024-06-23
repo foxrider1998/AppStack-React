@@ -17,11 +17,11 @@ import {
   sendPasswordResetEmail,
   signOut,
 } from "firebase/auth";
+import { User } from "react-feather";
 
 const INITIALIZE = "INITIALIZE";
 
 const firebaseApp = initializeApp(firebaseConfig);
-
 const auth = getAuth(firebaseApp);
 
 const initialState = {
@@ -64,12 +64,39 @@ function AuthProvider({ children }) {
   }, [dispatch]);
 
   const signIn = async (email, password) => {
-    await signInWithEmailAndPassword(auth, email, password);
+    
+    try {
+      const result = await signInWithEmailAndPassword(auth, email, password);
+      // Access user data
+      const user = result.user;
+      console.log('Signed in user:', user);
+      // Here you can further process user data, like storing it in state or context
+      // Define a global variable using let or const
+
+// Attach to window object for global access in browser
+    window.globalVariable.User = user;
+    } catch (error) {
+      console.error('Error signing in with Google:', error);
+    }
+
   };
 
   const signInWithGoogle = async () => {
     const provider = new GoogleAuthProvider();
-    await signInWithPopup(auth, provider);
+    try {
+      const result = await signInWithPopup(auth, provider);
+      // Access user data
+      const user = result.user;
+      console.log('Signed in user:', user.displayName);
+      // Here you can further process user data, like storing it in state or context
+      // Define a global variable using let or const
+
+// Attach to window object for global access in browser
+    window.globalVariable.User = user;
+    } catch (error) {
+      console.error('Error signing in with Google:', error);
+    }
+
   };
 
   const signInWithFaceBook = async () => {
@@ -121,6 +148,7 @@ function AuthProvider({ children }) {
       }}
     >
       {children}
+      {console.log(User)}
     </AuthContext.Provider>
   );
 }

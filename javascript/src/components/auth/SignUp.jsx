@@ -11,7 +11,7 @@ import useAuth from "../../hooks/useAuth";
 
 function SignUp() {
   const navigate = useNavigate();
-  const { signUp } = useAuth();
+  const { signUp, signInWithGoogle } = useAuth();
 
   return (
     <Formik
@@ -63,12 +63,9 @@ function SignUp() {
       }) => (
         <>
           <div className="d-grid gap-2 mb-3">
-            <Link to="/dashboard/default" className="btn btn-google btn-lg">
+          <button onClick={() => signInWithGoogle()} className="btn btn-google btn-lg">
               <FontAwesomeIcon icon={faGoogle} /> Sign in with Google
-            </Link>
-            <Link to="/dashboard/default" className="btn btn-facebook btn-lg">
-              <FontAwesomeIcon icon={faFacebookF} /> Sign in with Facebook
-            </Link>
+            </button>
           </div>
           <div className="row">
             <div className="col">

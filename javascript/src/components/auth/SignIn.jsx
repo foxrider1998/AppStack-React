@@ -7,11 +7,12 @@ import { Alert, Button, Form } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebookF, faGoogle } from "@fortawesome/free-brands-svg-icons";
 
+import { PieChart, Settings, User } from "react-feather";
 import useAuth from "../../hooks/useAuth";
 
 function SignIn() {
   const navigate = useNavigate();
-  const { signIn } = useAuth();
+  const { signIn, signInWithGoogle } = useAuth();
 
   return (
     <Formik
@@ -30,7 +31,7 @@ function SignIn() {
       onSubmit={async (values, { setErrors, setStatus, setSubmitting }) => {
         try {
           await signIn(values.email, values.password);
-
+          User.displayName =  values.email
           navigate("/private");
         } catch (error) {
           const message = error.message || "Something went wrong";
@@ -52,12 +53,9 @@ function SignIn() {
       }) => (
         <>
           <div className="d-grid gap-2 mb-3">
-            <Link to="/dashboard/default" className="btn btn-google btn-lg">
+          <button onClick={() => signInWithGoogle()} className="btn btn-google btn-lg">
               <FontAwesomeIcon icon={faGoogle} /> Sign in with Google
-            </Link>
-            <Link to="/dashboard/default" className="btn btn-facebook btn-lg">
-              <FontAwesomeIcon icon={faFacebookF} /> Sign in with Facebook
-            </Link>
+            </button>
           </div>
           <div className="row">
             <div className="col">

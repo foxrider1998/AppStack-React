@@ -6,12 +6,16 @@ import { PieChart, Settings, User } from "react-feather";
 
 import avatar1 from "../../assets/img/avatars/avatar.jpg";
 
+
+  // const displayName2 =  window.globalVariable.User? "user":"user";
+  const displayName2 =  "user"
 const NavbarUser = () => {
+  console.log(displayName2);
   return (
     <Dropdown className="nav-item" align="end">
       <span className="d-inline-block d-sm-none">
         <Dropdown.Toggle as="a" className="nav-link">
-          <Settings size={18} className="align-middle" />
+          <Settings size={18} className="align-middle" />\
         </Dropdown.Toggle>
       </span>
       <span className="d-none d-sm-inline-block">
@@ -21,7 +25,7 @@ const NavbarUser = () => {
             className="avatar img-fluid rounded-circle me-1"
             alt="Chris Wood"
           />
-          <span className="text-dark">Chris Wood</span>
+          <span className="text-dark">{displayName2}</span>
         </Dropdown.Toggle>
       </span>
       <Dropdown.Menu drop="end">
